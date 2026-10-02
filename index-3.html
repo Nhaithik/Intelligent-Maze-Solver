@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Intelligent Maze Solver</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="logo"><h1>Intelligent <span>Maze Solver</span></h1><p>AI-Based Maze Solving Using Search Algorithms</p></div>
+  <nav><a href="#home" class="on">Home</a><a href="#solver">Maze Solver</a><a href="#algorithms">Algorithms</a><a href="#comparison">Comparison</a><a href="#about">About</a></nav>
+</header>
+
+<section class="hero" id="home">
+  <div class="hero-in">
+    <div>
+      <h2>Explore. Solve. <span>Compare.</span></h2>
+      <p>An interactive AI-based system that demonstrates how different search algorithms solve a maze and compares their performance.</p>
+    </div>
+    <ul><li>Create Your Own Maze</li><li>Visualize AI Search</li><li>Compare Algorithms</li><li>Analyze Performance</li></ul>
+  </div>
+  <div class="cards">
+    <div class="ac c1"><b>BFS</b>Explores the maze level by level using a queue.</div>
+    <div class="ac c2"><b>DFS</b>Goes as deep as possible and backtracks when necessary.</div>
+    <div class="ac c3"><b>A*</b>Uses actual cost and estimated cost to find the best path.</div>
+    <div class="ac c4"><b>Greedy</b>Selects the node that appears closest to the goal based on heuristic.</div>
+  </div>
+</section>
+
+<main>
+  <section class="solver" id="solver">
+    <div class="panel">
+      <h3>Maze Controls</h3>
+      <div class="lbl">Editing Mode</div>
+      <div class="row"><button id="mWall" class="act">Add Walls</button><button id="mStart">Set Start</button><button id="mGoal">Set Goal</button></div>
+      <div class="lbl">Maze Actions</div>
+      <div class="row"><button id="gen">Generate Maze</button><button id="clr">Clear Walls</button><button id="rst">Reset Maze</button></div>
+      <div class="lbl">Algorithm Selection</div>
+      <div class="row">
+        <div style="flex:1"><div class="lbl" style="margin-top:0">Algorithm</div>
+          <select id="algo"><option value="astar">A* Search</option><option value="bfs">BFS</option><option value="dfs">DFS</option><option value="greedy">Greedy Best-First</option></select></div>
+        <div style="flex:1"><div class="lbl" style="margin-top:0">Animation Speed</div>
+          <select id="speed"><option value="30">Slow</option><option value="10" selected>Normal</option><option value="2">Fast</option><option value="0">Instant</option></select></div>
+      </div>
+      <button class="big solve" id="solve">Solve Maze</button>
+      <button class="big cmp" id="cmpBtn">Compare All Algorithms</button>
+    </div>
+    <div class="panel">
+      <h3>Maze Grid <span class="note" style="font-weight:400;float:right;font-size:.8rem">Click or drag on cells to add walls, set start/goal and solve the maze.</span></h3>
+      <div class="gridwrap"><div id="maze"></div></div>
+      <div class="legend"><span><i style="background:#2e9e4f"></i>Start</span><span><i style="background:#e53935"></i>Goal</span><span><i style="background:#0d0d0d"></i>Wall</span><span><i style="background:#fff"></i>Empty</span><span><i style="background:#8fc7ff"></i>Explored</span><span><i style="background:#ffd54a"></i>Final Path</span></div>
+    </div>
+  </section>
+
+  <section class="panel" id="results">
+    <h3>Search Results</h3>
+    <div class="stats">
+      <div class="stat"><small>Algorithm</small><b id="rA" style="color:var(--blue)">—</b></div>
+      <div class="stat"><small>Path Found</small><b id="rF">—</b></div>
+      <div class="stat"><small>Nodes Explored</small><b id="rN" style="color:var(--orange)">—</b></div>
+      <div class="stat"><small>Path Length</small><b id="rL" style="color:var(--purple)">—</b></div>
+      <div class="stat"><small>Execution Time</small><b id="rT" style="color:var(--purple)">—</b></div>
+    </div>
+  </section>
+
+  <section class="panel" id="comparison">
+    <h3>Algorithm Comparison</h3>
+    <table>
+      <thead><tr><th>Algorithm</th><th>Path Found</th><th>Nodes Explored</th><th>Path Length</th><th>Execution Time</th></tr></thead>
+      <tbody id="cmpBody"><tr><td colspan="5" class="note">Click “Compare All Algorithms” to run BFS, DFS, A* and Greedy on the same maze, start and goal.</td></tr></tbody>
+    </table>
+    <h3 style="margin-top:18px">Visual Comparison</h3>
+    <div class="charts" id="charts"></div>
+  </section>
+
+  <section class="panel" id="algorithms">
+    <h3>How Algorithms Work</h3>
+    <div class="grid4">
+      <div class="algo"><b style="color:var(--blue)">BFS</b>Explores level by level from the start node using a queue. Finds the shortest path in an unweighted maze.</div>
+      <div class="algo"><b style="color:var(--green)">DFS</b>Explores as deep as possible along one path using a stack, and backtracks when it reaches a dead end.</div>
+      <div class="algo"><b style="color:var(--orange)">A* Search</b>Uses f(n) = g(n) + h(n), where g(n) is the cost travelled and h(n) is the estimated cost to the goal.<div class="formula">f(n) = g(n) + h(n)</div></div>
+      <div class="algo"><b style="color:var(--purple)">Greedy Best-First</b>Selects the node that looks closest to the goal, based mainly on the heuristic h(n).</div>
+    </div>
+  </section>
+
+  <section class="bot">
+    <div class="panel"><h3>How the System Works</h3>
+      <ol class="steps"><li>Create or generate a maze.</li><li>Set start and goal positions.</li><li>Add obstacles or walls.</li><li>Select an AI search algorithm.</li><li>Visualize the search process and reconstruct the path.</li><li>Display performance results and compare all algorithms.</li></ol></div>
+    <div class="panel"><h3>Applications</h3>
+      <ul class="plain"><li>🤖 Robot navigation</li><li>🎮 Game pathfinding</li><li>🚗 Autonomous vehicles</li><li>🗺️ Route planning</li><li>📦 Warehouse robots</li><li>🏭 Industrial automation</li></ul></div>
+    <div class="panel"><h3>Future Scope</h3>
+      <ul class="plain"><li>Dynamic obstacles</li><li>Weighted terrain</li><li>Multiple destinations</li><li>Real-time navigation</li><li>Robot simulation</li><li>Advanced optimization</li><li>Reinforcement learning</li></ul></div>
+    <div class="panel"><h3>Evaluation Metrics</h3>
+      <ul class="plain"><li>Path found (yes/no)</li><li>Nodes explored</li><li>Path length</li><li>Execution time</li></ul></div>
+  </section>
+
+  <section class="panel" id="about">
+    <h3>About the Project</h3>
+    <div class="about">
+      <div><b>Project</b>Intelligent Maze Solver</div>
+      <div><b>Project Type</b>AI &amp; Machine Learning / PBL</div>
+      <div><b>Technologies</b>HTML, CSS, JavaScript</div>
+      <div><b>Algorithms</b>BFS, DFS, A*, Greedy Best-First Search</div>
+    </div>
+    <p class="note" style="margin-top:12px">Deployment: GitHub Pages. Objective: demonstrate and compare uninformed and informed search algorithms on the same maze.</p>
+  </section>
+</main>
+<footer>Intelligent Maze Solver · AI &amp; Machine Learning PBL Project</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

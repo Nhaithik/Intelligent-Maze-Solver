@@ -126,7 +126,6 @@ $('cmpBtn').onclick=()=>{
   clearViz();store={};renderComparison();
   const sp=+$('speed').value;
   setBusy(true);
-  $('comparison').scrollIntoView({behavior:'smooth'});
   (function next(i){
     if(i>=ORDER.length){setBusy(false);return}
     const type=ORDER[i],r=search(type);
